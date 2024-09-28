@@ -1,0 +1,34 @@
+spring:
+  application:
+    name: astro-kundli
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/mydatabase
+    username: myuser
+    password: secret
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update # Automatically creates/updates tables based on entities (use cautiously in production)
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect # PostgreSQL dialect for Hibernate
+
+  # Optional: Customize connection pool settings (recommended for production environments)
+  datasource.hikari:
+    maximum-pool-size: 10
+    minimum-idle: 2
+    idle-timeout: 30000
+    max-lifetime: 1800000
+    connection-timeout: 30000
+
+  # Logging settings
+  logging:
+    level:
+      org.springframework: INFO
+      org.hibernate.SQL: DEBUG # Logs all SQL queries (useful for debugging, but disable in production)
+
+server:
+  port: 8080 # Default port, change as needed
+
