@@ -1,7 +1,5 @@
 package co.renil.astro.kundli.entity;
 
-package co.renil.astro.kundli.entity;
-
 import lombok.Data;
 
 import jakarta.persistence.*;
