@@ -1,8 +1,8 @@
 package co.renil.astro.kundli.entity;
 
+import jakarta.persistence.*;
 import lombok.Data;
 
-import jakarta.persistence.*;
 import java.util.UUID;
 
 @Data
