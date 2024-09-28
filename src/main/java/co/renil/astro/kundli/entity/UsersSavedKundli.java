@@ -10,9 +10,9 @@ import java.util.UUID;
 
 @Data
 @Entity
-@Table(name = "payments")
+@Table(name = "users_saved_kundlis")
 @EntityListeners(AuditingEntityListener.class)
-public class Payment {
+public class UsersSavedKundli {
 
     @Id
     @GeneratedValue
@@ -22,22 +22,11 @@ public class Payment {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    @Column(name = "amount", nullable = false)
-    private Double amount;
+    @ManyToOne
+    @JoinColumn(name = "kundli_id", nullable = false)
+    private Kundli kundli;
 
-    @Column(name = "currency", nullable = false)
-    private String currency;
-
-    @Column(name = "payment_date")
-    private LocalDateTime paymentDate;
-
-    @Column(name = "payment_method")
-    private String paymentMethod;
-
-    @Column(name = "status")
-    private String status;
-
-    @Column(name = "created_at", updatable = false)
+    @Column(name = "saved_at", updatable = false)
     @CreatedDate
-    private LocalDateTime createdAt;
+    private LocalDateTime savedAt;
 }

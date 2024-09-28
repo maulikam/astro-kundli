@@ -10,32 +10,22 @@ import java.util.UUID;
 
 @Data
 @Entity
-@Table(name = "payments")
+@Table(name = "print_templates")
 @EntityListeners(AuditingEntityListener.class)
-public class Payment {
+public class PrintTemplate {
 
     @Id
     @GeneratedValue
     private UUID id;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    @Column(name = "name", nullable = false)
+    private String name;
 
-    @Column(name = "amount", nullable = false)
-    private Double amount;
+    @Column(name = "template_data")
+    private String templateData;
 
-    @Column(name = "currency", nullable = false)
-    private String currency;
-
-    @Column(name = "payment_date")
-    private LocalDateTime paymentDate;
-
-    @Column(name = "payment_method")
-    private String paymentMethod;
-
-    @Column(name = "status")
-    private String status;
+    @Column(name = "language")
+    private String language;
 
     @Column(name = "created_at", updatable = false)
     @CreatedDate

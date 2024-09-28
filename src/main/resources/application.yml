@@ -14,8 +14,9 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect # PostgreSQL dialect for Hibernate
-
-  # Optional: Customize connection pool settings (recommended for production environments)
+        jdbc:
+          lob:
+            non_contextual_creation: true
   datasource.hikari:
     maximum-pool-size: 10
     minimum-idle: 2

@@ -25,11 +25,20 @@ repositories {
 	mavenCentral()
 }
 
+ext {
+	hypersistenceUtilsVersion = '3.8.1'
+	hypersistenceTsidVersion = '2.1.2'
+	hypersistenceOptimizerVersion = '2.8.1'  // If needed
+}
+
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	// https://mvnrepository.com/artifact/com.vladmihalcea/hibernate-types-52
+	implementation 'com.vladmihalcea:hibernate-types-55:2.21.1'
+
 	compileOnly 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	developmentOnly 'org.springframework.boot:spring-boot-docker-compose'
@@ -40,6 +49,18 @@ dependencies {
 	testImplementation 'org.testcontainers:junit-jupiter'
 	testImplementation 'org.testcontainers:postgresql'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+	// Hypersistence Utils Hibernate 6.3
+	implementation("io.hypersistence:hypersistence-utils-hibernate-63:${hypersistenceUtilsVersion}") {
+		exclude group: 'org.glassfish.jaxb', module: 'jaxb-runtime'
+	}
+
+	// Hypersistence TSID
+	implementation "io.hypersistence:hypersistence-tsid:${hypersistenceTsidVersion}"
+
+	// If you want to include Hypersistence Optimizer (assuming it's needed):
+	// implementation "io.hypersistence:hypersistence-optimizer:${hypersistenceOptimizerVersion}"
+
 }
 
 hibernate {

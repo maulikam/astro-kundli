@@ -1,8 +1,10 @@
 package co.renil.astro.kundli.entity;
 
 import lombok.Data;
+import org.hibernate.annotations.Type;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import io.hypersistence.utils.hibernate.type.json.JsonBinaryType;
 
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
@@ -10,32 +12,27 @@ import java.util.UUID;
 
 @Data
 @Entity
-@Table(name = "payments")
+@Table(name = "transits")
 @EntityListeners(AuditingEntityListener.class)
-public class Payment {
+public class Transit {
 
     @Id
     @GeneratedValue
     private UUID id;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    @JoinColumn(name = "kundli_id", nullable = false)
+    private Kundli kundli;
 
-    @Column(name = "amount", nullable = false)
-    private Double amount;
+    @Column(name = "date")
+    private java.sql.Date date;
 
-    @Column(name = "currency", nullable = false)
-    private String currency;
+    @Column(name = "planet")
+    private String planet;
 
-    @Column(name = "payment_date")
-    private LocalDateTime paymentDate;
-
-    @Column(name = "payment_method")
-    private String paymentMethod;
-
-    @Column(name = "status")
-    private String status;
+    @Type(JsonBinaryType.class)
+    @Column(name = "transit_position", columnDefinition = "jsonb")
+    private String transitPosition;
 
     @Column(name = "created_at", updatable = false)
     @CreatedDate

@@ -10,32 +10,29 @@ import java.util.UUID;
 
 @Data
 @Entity
-@Table(name = "payments")
+@Table(name = "planetary_positions")
 @EntityListeners(AuditingEntityListener.class)
-public class Payment {
+public class PlanetaryPosition {
 
     @Id
     @GeneratedValue
     private UUID id;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    @JoinColumn(name = "kundli_id", nullable = false)
+    private Kundli kundli;
 
-    @Column(name = "amount", nullable = false)
-    private Double amount;
+    @Column(name = "planet", nullable = false)
+    private String planet;
 
-    @Column(name = "currency", nullable = false)
-    private String currency;
+    @Column(name = "zodiac_sign")
+    private String zodiacSign;
 
-    @Column(name = "payment_date")
-    private LocalDateTime paymentDate;
+    @Column(name = "degree")
+    private Float degree;
 
-    @Column(name = "payment_method")
-    private String paymentMethod;
-
-    @Column(name = "status")
-    private String status;
+    @Column(name = "retrograde")
+    private Boolean retrograde;
 
     @Column(name = "created_at", updatable = false)
     @CreatedDate

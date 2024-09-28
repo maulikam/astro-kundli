@@ -2,6 +2,7 @@ package co.renil.astro.kundli.entity;
 
 import lombok.Data;
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import jakarta.persistence.*;
@@ -10,9 +11,9 @@ import java.util.UUID;
 
 @Data
 @Entity
-@Table(name = "payments")
+@Table(name = "user_preferences")
 @EntityListeners(AuditingEntityListener.class)
-public class Payment {
+public class UserPreference {
 
     @Id
     @GeneratedValue
@@ -22,22 +23,20 @@ public class Payment {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    @Column(name = "amount", nullable = false)
-    private Double amount;
+    @Column(name = "preferred_chart_style")
+    private String preferredChartStyle;
 
-    @Column(name = "currency", nullable = false)
-    private String currency;
+    @Column(name = "preferred_ayanamsa")
+    private String preferredAyanamsa;
 
-    @Column(name = "payment_date")
-    private LocalDateTime paymentDate;
-
-    @Column(name = "payment_method")
-    private String paymentMethod;
-
-    @Column(name = "status")
-    private String status;
+    @Column(name = "preferred_language")
+    private String preferredLanguage;
 
     @Column(name = "created_at", updatable = false)
     @CreatedDate
     private LocalDateTime createdAt;
+
+    @Column(name = "updated_at")
+    @LastModifiedDate
+    private LocalDateTime updatedAt;
 }
