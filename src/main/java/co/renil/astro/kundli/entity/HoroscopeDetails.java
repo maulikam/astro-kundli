@@ -1,11 +1,9 @@
 package co.renil.astro.kundli.entity;
 
-// import co.renil.astro.kundli.config.JsonConverter;
 import co.renil.astro.kundli.config.JsonConverter;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import org.hibernate.annotations.Type;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -26,7 +24,7 @@ public class HoroscopeDetails {
     @JoinColumn(name = "kundli_id", nullable = false)
     private Kundli kundli;
 
-    @Column(name = "horoscope_date")
+    @Column(name = "horoscope_date", nullable = false)
     private LocalDateTime horoscopeDate;
 
     @Convert(converter = JsonConverter.class)

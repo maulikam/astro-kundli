@@ -1,11 +1,9 @@
 package co.renil.astro.kundli.entity;
 
-// import co.renil.astro.kundli.config.JsonConverter;
 import co.renil.astro.kundli.config.JsonConverter;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import org.hibernate.annotations.Type;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
