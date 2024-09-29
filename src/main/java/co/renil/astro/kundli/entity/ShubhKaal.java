@@ -1,6 +1,7 @@
 package co.renil.astro.kundli.entity;
 
-import io.hypersistence.utils.hibernate.type.json.JsonBinaryType;
+// import co.renil.astro.kundli.config.JsonConverter;
+import co.renil.astro.kundli.config.JsonConverter;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.hibernate.annotations.Type;
@@ -32,11 +33,11 @@ public class ShubhKaal {
     @Column(name = "mandi")
     private java.sql.Time mandi;
 
-    @Type(JsonBinaryType.class)
+    @Convert(converter = JsonConverter.class)
     @Column(name = "hora", columnDefinition = "jsonb")
     private String hora;
 
-    @Type(JsonBinaryType.class)
+    @Convert(converter = JsonConverter.class)
     @Column(name = "chogadia", columnDefinition = "jsonb")
     private String chogadia;
 

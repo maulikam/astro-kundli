@@ -1,5 +1,5 @@
 # Stage 1: Build
-FROM ghcr.io/graalvm/graalvm-community:21 AS builder
+FROM amazoncorretto:21 AS builder
 
 # Set the working directory inside the container
 WORKDIR /app
@@ -17,16 +17,23 @@ COPY src src
 RUN ./gradlew bootJar
 
 # Stage 2: Run
-FROM eclipse-temurin:17-jre
+FROM amazoncorretto:21
 
 # Set the working directory for the final image
 WORKDIR /app
 
+# Install PostgreSQL client tools to get pg_isready
+RUN yum update -y && yum install -y postgresql
+
 # Copy the jar from the builder stage
 COPY --from=builder /app/build/libs/*.jar app.jar
+
+# Copy the wait-for-postgres script
+#COPY wait-for-postgres.sh /wait-for-postgres.sh
+#RUN chmod +x /wait-for-postgres.sh
 
 # Expose the port that Spring Boot runs on (default: 8080)
 EXPOSE 8080
 
-# Run the application
-ENTRYPOINT ["java", "-jar", "app.jar"]
+# Run the script to wait for Postgres and then start the application
+ENTRYPOINT ["/bin/sh", "-c", "java -jar app.jar"]

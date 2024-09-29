@@ -1,6 +1,8 @@
 package co.renil.astro.kundli.entity;
 
-import io.hypersistence.utils.hibernate.type.json.JsonBinaryType;
+// import co.renil.astro.kundli.config.JsonConverter;
+import co.renil.astro.kundli.config.JsonConverter;
+
 import jakarta.persistence.*;
 import lombok.Data;
 import org.hibernate.annotations.Type;
@@ -24,14 +26,14 @@ public class HoroscopeDetails {
     @JoinColumn(name = "kundli_id", nullable = false)
     private Kundli kundli;
 
-    @Column(name = "current_date")
-    private LocalDateTime currentDate;
+    @Column(name = "horoscope_date")
+    private LocalDateTime horoscopeDate;
 
-    @Type(JsonBinaryType.class)
+    @Convert(converter = JsonConverter.class)
     @Column(name = "planetary_positions", columnDefinition = "jsonb")
     private String planetaryPositions;
 
-    @Type(JsonBinaryType.class)
+    @Convert(converter = JsonConverter.class)
     @Column(name = "rahu_ketu_positions", columnDefinition = "jsonb")
     private String rahuKetuPositions;
 

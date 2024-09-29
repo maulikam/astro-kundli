@@ -1,6 +1,8 @@
 package co.renil.astro.kundli.entity;
 
-import io.hypersistence.utils.hibernate.type.json.JsonBinaryType;
+// import co.renil.astro.kundli.config.JsonConverter;
+import co.renil.astro.kundli.config.JsonConverter;
+
 import jakarta.persistence.*;
 import lombok.Data;
 import org.hibernate.annotations.Type;
@@ -30,7 +32,7 @@ public class Transit {
     @Column(name = "planet")
     private String planet;
 
-    @Type(JsonBinaryType.class)
+    @Convert(converter = JsonConverter.class)
     @Column(name = "transit_position", columnDefinition = "jsonb")
     private String transitPosition;
 

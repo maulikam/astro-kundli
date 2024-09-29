@@ -38,7 +38,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	// https://mvnrepository.com/artifact/com.vladmihalcea/hibernate-types-52
-	implementation 'com.vladmihalcea:hibernate-types-55:2.21.1'
+//	implementation 'com.vladmihalcea:hibernate-types-60:2.21.1'
 
 	// Spring Security
 	implementation 'org.springframework.boot:spring-boot-starter-security'
@@ -60,12 +60,12 @@ dependencies {
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 
 	// Hypersistence Utils Hibernate 6.3
-	implementation("io.hypersistence:hypersistence-utils-hibernate-63:${hypersistenceUtilsVersion}") {
+	/*implementation("io.hypersistence:hypersistence-utils-hibernate-63:${hypersistenceUtilsVersion}") {
 		exclude group: 'org.glassfish.jaxb', module: 'jaxb-runtime'
 	}
 
 	// Hypersistence TSID
-	implementation "io.hypersistence:hypersistence-tsid:${hypersistenceTsidVersion}"
+	imple*/ // mentation "io.hypersistence:hypersistence-tsid:${hypersistenceTsidVersion}"
 
 	// If you want to include Hypersistence Optimizer (assuming it's needed):
 	// implementation "io.hypersistence:hypersistence-optimizer:${hypersistenceOptimizerVersion}"

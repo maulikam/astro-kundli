@@ -1,7 +1,10 @@
 package co.renil.astro.kundli.entity;
 
 
-import io.hypersistence.utils.hibernate.type.json.JsonBinaryType;
+// import co.renil.astro.kundli.config.JsonConverter;
+import co.renil.astro.kundli.config.JsonConverter;
+
+
 import jakarta.persistence.*;
 import lombok.Data;
 import org.hibernate.annotations.Type;
@@ -28,7 +31,7 @@ public class DivisionalChart {
     @Column(name = "chart_type")
     private String chartType;
 
-    @Type(JsonBinaryType.class)
+    @Convert(converter = JsonConverter.class)
     @Column(name = "chart_data", columnDefinition = "jsonb")
     private String chartData;
 
