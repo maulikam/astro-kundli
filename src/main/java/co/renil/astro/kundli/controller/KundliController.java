@@ -3,6 +3,7 @@ package co.renil.astro.kundli.controller;
 import co.renil.astro.kundli.entity.Kundli;
 import co.renil.astro.kundli.service.KundliService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,13 +21,14 @@ public class KundliController {
     @PostMapping
     public ResponseEntity<Kundli> createKundli(@RequestBody Kundli kundli) {
         Kundli newKundli = kundliService.createKundli(kundli);
-        return ResponseEntity.ok(newKundli);
+        return ResponseEntity.status(HttpStatus.CREATED).body(newKundli);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Kundli> getKundliById(@PathVariable UUID id) {
         Optional<Kundli> kundli = kundliService.getKundliById(id);
-        return kundli.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+        return kundli.map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).build());
     }
 
     @PutMapping("/{id}")
