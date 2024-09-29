@@ -1,11 +1,7 @@
 package co.renil.astro.kundli.entity;
 
-// import co.renil.astro.kundli.config.JsonConverter;
-import co.renil.astro.kundli.config.JsonConverter;
-
 import jakarta.persistence.*;
 import lombok.Data;
-import org.hibernate.annotations.Type;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -26,9 +22,9 @@ public class Reports {
     @JoinColumn(name = "kundli_id", nullable = false)
     private Kundli kundli;
 
-    @Convert(converter = JsonConverter.class)
-    @Column(name = "report_data", columnDefinition = "jsonb")
-    private String reportData;
+    @Lob
+    @Column(name = "report_data", nullable = false)
+    private byte[] reportData;
 
     @Column(name = "party_name")
     private String partyName;
@@ -42,8 +38,8 @@ public class Reports {
     @Column(name = "language")
     private String language;
 
-    @Column(name = "created_at", updatable = false)
     @CreatedDate
+    @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
 }
 

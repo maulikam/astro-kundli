@@ -59,6 +59,11 @@ dependencies {
 	testImplementation 'org.testcontainers:postgresql'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 
+	// https://mvnrepository.com/artifact/com.itextpdf/itext7-core
+	implementation 'com.itextpdf:itext7-core:8.0.5'
+
+
+
 	// Hypersistence Utils Hibernate 6.3
 	/*implementation("io.hypersistence:hypersistence-utils-hibernate-63:${hypersistenceUtilsVersion}") {
 		exclude group: 'org.glassfish.jaxb', module: 'jaxb-runtime'
