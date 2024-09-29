@@ -62,6 +62,13 @@ dependencies {
 	// https://mvnrepository.com/artifact/com.itextpdf/itext7-core
 	implementation 'com.itextpdf:itext7-core:8.0.5'
 
+	implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+	implementation 'org.springframework.boot:spring-boot-starter-cache'
+
+	implementation 'org.flywaydb:flyway-core'
+	implementation 'org.flywaydb:flyway-database-postgresql'
+
+
 
 
 	// Hypersistence Utils Hibernate 6.3
