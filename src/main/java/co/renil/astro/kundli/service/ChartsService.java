@@ -7,8 +7,12 @@ import co.renil.astro.kundli.entity.Kundli;
 import co.renil.astro.kundli.repository.ChartsRepository;
 import co.renil.astro.kundli.repository.KundliRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -22,6 +26,8 @@ public class ChartsService {
     private final ChartsRepository chartsRepository;
     private final KundliRepository kundliRepository;
     private final BirthChartGenerator birthChartGenerator;
+
+    private final ChartsService chartsService;
 
     /**
      * Generate a new chart for the given Kundli.
@@ -53,6 +59,23 @@ public class ChartsService {
         chart.setChartData(chartData);
 
         return chartsRepository.save(chart);
+    }
+
+    /**
+     * Generate a birth chart for a specific Kundli.
+     *
+     * @return The generated BirthChart as a Charts entity.
+     */
+    @PostMapping("/generate-birth-chart")
+    public ResponseEntity<Charts> generateBirthChart(@RequestParam UUID kundliId) {
+        try {
+            Charts birthChart = chartsService.generateChart(kundliId, "BirthChart");
+            return ResponseEntity.ok(birthChart);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
     }
 
     /**
