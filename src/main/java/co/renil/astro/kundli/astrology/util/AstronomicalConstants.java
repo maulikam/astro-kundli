@@ -1,5 +1,9 @@
 package co.renil.astro.kundli.astrology.util;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * This class contains refined astronomical and astrological constants used in calculations.
  */
@@ -227,9 +231,9 @@ public final class AstronomicalConstants {
     public static final int TOTAL_KALA_VIGHATIKAS = 60; // Number of Vighatikas in a Ghatika
 
     // Additional arrays for Vedic astrology
-    public static final String[] NAVAGRAHA = {"Sun", "Moon", "Mars", "Mercury", "Jupiter", "Venus", "Saturn", "Rahu", "Ketu"};
-    public static final String[] ELEMENTS = {"Fire", "Earth", "Air", "Water"};
-    public static final String[] GUNAS = {"Sattva", "Rajas", "Tamas"};
+    public static final List<String> NAVAGRAHA = new ArrayList<>(Arrays.asList("Sun", "Moon", "Mars", "Mercury", "Jupiter", "Venus", "Saturn", "Rahu", "Ketu"));
+    public static final List<String> ELEMENTS = new ArrayList<>(Arrays.asList("Fire", "Earth", "Air", "Water"));
+    public static final List<String> GUNAS = new ArrayList<>(Arrays.asList("Sattva", "Rajas", "Tamas"));
 
     // House System Constants
     public enum HouseSystem {
