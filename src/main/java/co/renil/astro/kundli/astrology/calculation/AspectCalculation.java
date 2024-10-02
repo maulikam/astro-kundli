@@ -15,7 +15,7 @@ public class AspectCalculation {
         angle = Math.min(angle, DEGREES_IN_CIRCLE - angle);
 
         for (AspectType aspectType : AspectType.values()) {
-            if (isWithinOrb(angle, aspectType.getOrb())) {
+            if (isWithinOrb(angle, aspectType.getAngle(), aspectType.getOrb())) {
                 return new Aspect(aspectType.getName(), angle, aspectType.getOrb());
             }
         }
@@ -23,7 +23,7 @@ public class AspectCalculation {
     }
 
     /**
-     * Calculates special aspects for Jupiter, Mars, and Saturn
+     * Calculates special aspects for Jupiter, Mars, and Saturn.
      */
     public static Aspect getSpecialAspect(String planet, double longitude1, double longitude2) {
         double angle = Math.abs(longitude1 - longitude2);
@@ -58,6 +58,4 @@ public class AspectCalculation {
     private static boolean isWithinOrb(double angle, double aspectAngle, double orb) {
         return Math.abs(angle - aspectAngle) <= orb;
     }
-
-
 }
