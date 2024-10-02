@@ -1,4 +1,4 @@
-package co.renil.astro.kundli.astrology.model.enums;
+package co.renil.astro.kundli.astrology.util.enums;
 
 public enum PlanetaryDignity {
     DOMICILE,
