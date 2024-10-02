@@ -1,5 +1,7 @@
 package co.renil.astro.kundli.service;
 
+import co.renil.astro.kundli.astrology.chart.BirthChartGenerator;
+import co.renil.astro.kundli.astrology.model.BirthChart;
 import co.renil.astro.kundli.entity.Charts;
 import co.renil.astro.kundli.entity.Kundli;
 import co.renil.astro.kundli.repository.ChartsRepository;
@@ -8,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -18,6 +21,7 @@ public class ChartsService {
 
     private final ChartsRepository chartsRepository;
     private final KundliRepository kundliRepository;
+    private final BirthChartGenerator birthChartGenerator;
 
     /**
      * Generate a new chart for the given Kundli.
@@ -36,8 +40,11 @@ public class ChartsService {
 
         Kundli kundli = optionalKundli.get();
 
-        // Placeholder logic for generating chart data based on chart type
-        String chartData = generateChartData(chartType, kundli);
+        // Generate birth chart data using BirthChartGenerator
+        BirthChart birthChart = generateBirthChart(kundli);
+
+        // Convert BirthChart object to a string representation (e.g., JSON) to save as chart data
+        String chartData = convertBirthChartToString(birthChart);
 
         // Create and save the Charts entity
         Charts chart = new Charts();
@@ -69,16 +76,32 @@ public class ChartsService {
     }
 
     /**
-     * Generate chart data for a given Kundli.
-     * Placeholder logic: You need to replace this with actual astrology logic.
+     * Generate a birth chart for a given Kundli using BirthChartGenerator.
      *
-     * @param chartType Type of the chart.
-     * @param kundli    The Kundli entity containing the birth details.
-     * @return Chart data in String or JSON format.
+     * @param kundli The Kundli entity containing birth details.
+     * @return A BirthChart object with generated data.
      */
-    private String generateChartData(String chartType, Kundli kundli) {
-        // Placeholder logic for generating astrological chart data
-        // Actual logic can involve complex astrology calculations
-        return String.format("Generated %s chart for Kundli with ID %s", chartType, kundli.getId());
+    private BirthChart generateBirthChart(Kundli kundli) {
+        // Convert birthDate and birthTime into LocalDateTime
+        LocalDateTime birthDateTime = LocalDateTime.of(
+                kundli.getBirthDate().toLocalDate(),
+                kundli.getBirthTime().toLocalTime()
+        );
+        double longitude = kundli.getLongitude();
+        double latitude = kundli.getLatitude();
+
+        return birthChartGenerator.generateBirthChart(birthDateTime, longitude, latitude);
+    }
+
+    /**
+     * Converts a BirthChart object to a string representation (e.g., JSON).
+     *
+     * @param birthChart The BirthChart object to convert.
+     * @return The string representation of the birth chart.
+     */
+    private String convertBirthChartToString(BirthChart birthChart) {
+        // Placeholder logic to convert BirthChart to String (e.g., JSON serialization)
+        // You could use a library like Jackson or Gson here to convert to JSON
+        return birthChart.toString();
     }
 }
