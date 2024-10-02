@@ -14,7 +14,7 @@ public class Planet {
     private boolean combust;
 
     // Custom constructor to initialize name and longitude
-    public Planet(String name, double longitude) {
+    public Planet(String name, double longitude, double speed) {
         this.name = name;
         this.longitude = longitude;
     }
