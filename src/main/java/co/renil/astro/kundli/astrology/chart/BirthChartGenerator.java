@@ -37,7 +37,7 @@ public class BirthChartGenerator {
         birthChart.setNavamsa(generateNavamsa(birthChart.getPlanets()));
         birthChart.setDasha(generateDasha(birthChart.getPlanets(), birthDateTime));
 
-        calculateAdditionalPlanetaryInfo(birthChart);
+        calculateAdditionalPlanetaryInfo(birthDateTime, latitude, longitude, birthChart);
 
         logger.info("Birth chart generation completed.");
         return birthChart;
@@ -147,17 +147,17 @@ public class BirthChartGenerator {
                 .orElse("");
     }
 
-    private void calculateAdditionalPlanetaryInfo(BirthChart birthChart) {
+    private void calculateAdditionalPlanetaryInfo(LocalDateTime birthDateTime, double latitude, double longitude, BirthChart birthChart) {
         logger.debug("Calculating additional planetary information.");
         List<Planet> planets = birthChart.getPlanets();
         Optional<Planet> sun = planets.stream().filter(p -> p.getName().equalsIgnoreCase("Sun")).findFirst();
         double ascendantDegree = birthChart.getHouses()[0].getCuspDegree();
 
-        planets.forEach(planet -> updatePlanetInfo(planet, sun, ascendantDegree));
+        planets.forEach(planet -> updatePlanetInfo(birthDateTime, latitude, longitude, planet, sun, ascendantDegree));
     }
 
-    private void updatePlanetInfo(Planet planet, Optional<Planet> sun, double ascendantDegree) {
-        double shadbala = PlanetaryCalculation.calculateShadbala(planet, ascendantDegree);
+    private void updatePlanetInfo(LocalDateTime birthDateTime, double latitude, double longitude, Planet planet, Optional<Planet> sun, double ascendantDegree) {
+        double shadbala = PlanetaryCalculation.calculateShadbala(birthDateTime, latitude, longitude, planet, ascendantDegree);
         planet.setShadbala(shadbala);
 
         sun.ifPresent(s -> {
