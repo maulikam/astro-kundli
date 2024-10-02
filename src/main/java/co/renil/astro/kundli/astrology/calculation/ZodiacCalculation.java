@@ -40,7 +40,7 @@ public class ZodiacCalculation {
      */
     public static String getElement(ZodiacSign sign) {
         int index = (Arrays.asList(ZODIAC_SIGN_NAMES).indexOf(sign.getName())) % 4;
-        return ELEMENTS[index];
+        return ELEMENTS.get(index);
     }
 
 }
