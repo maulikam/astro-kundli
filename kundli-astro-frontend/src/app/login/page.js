@@ -1,7 +1,8 @@
 // src/app/login/page.js
 
+"use client"; 
 import React, { useState } from 'react';
-import { useAuth } from '../../hooks/useAuth';
+import useAuth from '../../hooks/useAuth';
 import InputField from '../../components/ui/InputField';
 import Button from '../../components/ui/Button';
 

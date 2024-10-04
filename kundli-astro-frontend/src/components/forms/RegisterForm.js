@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import InputField from '../ui/InputField';
 import Button from '../ui/Button';
-import { useAuth } from '../../hooks/useAuth';
+import useAuth from '../../hooks/useAuth';
 
 // New reusable FormInput component to minimize redundancy
 const FormInput = ({ label, type, name, value, onChange, placeholder, required }) => (

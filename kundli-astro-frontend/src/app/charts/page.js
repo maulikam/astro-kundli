@@ -1,5 +1,6 @@
 // src/app/charts/page.js
 
+"use client"; 
 import React from 'react';
 import Link from 'next/link';
 import ChartDisplay from '../../components/ChartDisplay';

@@ -1,12 +1,13 @@
 // src/app/horoscope/yearly/page.js
 
+"use client"; 
 import React, { useEffect, useState } from 'react';
 import { HOROSCOPE_API } from '../../../lib/constants/apiEndpoints';
 import { get } from '../../../lib/api';
 import Loading from '../../../components/Loading';
 import Error from '../../../components/Error';
 import HoroscopeDisplay from '../../../components/HoroscopeDisplay';
-import { useAuth } from '../../../hooks/useAuth';
+import useAuth from '../../../hooks/useAuth';
 
 const YearlyHoroscopePage = () => {
   const [horoscope, setHoroscope] = useState(null);

@@ -1,5 +1,6 @@
 // src/app/kundli/[id]/page.js
 
+"use client"; 
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { KUNDLI_API } from '../../../lib/constants/apiEndpoints';
@@ -7,7 +8,7 @@ import { get, put, del } from '../../../lib/api';
 import Loading from '../../../components/Loading';
 import Error from '../../../components/Error';
 import KundliForm from '../../../components/forms/KundliForm';
-import { useAuth } from '../../../hooks/useAuth';
+import useAuth from '../../../hooks/useAuth';
 
 const KundliPage = () => {
   const router = useRouter();

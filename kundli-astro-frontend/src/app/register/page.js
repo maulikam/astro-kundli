@@ -1,9 +1,11 @@
 // src/app/register/page.js
 
+"use client"; // Add this line to mark the component as a Client Component
+
 import React, { useState } from 'react';
 import InputField from '../../components/ui/InputField';
 import Button from '../../components/ui/Button';
-import { useAuth } from '../../hooks/useAuth';
+import useAuth from '../../hooks/useAuth';
 import { AUTH_API } from '../../lib/constants/apiEndpoints';
 import { post } from '../../lib/api';
 

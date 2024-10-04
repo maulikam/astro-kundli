@@ -1,5 +1,6 @@
 // src/app/matchmaking/page.js
 
+"use client"; 
 import React, { useState } from 'react';
 import InputField from '../../components/ui/InputField';
 import Button from '../../components/ui/Button';

@@ -1,7 +1,8 @@
 // src/app/dashboard/page.js
 
+"use client"; 
 import React from 'react';
-import { useAuth } from '../../hooks/useAuth';
+import useAuth from '../../hooks/useAuth';
 import HoroscopeDisplay from '../../components/HoroscopeDisplay';
 import Button from '../../components/ui/Button';
 
