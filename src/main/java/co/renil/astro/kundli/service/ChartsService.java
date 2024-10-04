@@ -27,7 +27,6 @@ public class ChartsService {
     private final KundliRepository kundliRepository;
     private final BirthChartGenerator birthChartGenerator;
 
-    private final ChartsService chartsService;
 
     /**
      * Generate a new chart for the given Kundli.
@@ -69,7 +68,7 @@ public class ChartsService {
     @PostMapping("/generate-birth-chart")
     public ResponseEntity<Charts> generateBirthChart(@RequestParam UUID kundliId) {
         try {
-            Charts birthChart = chartsService.generateChart(kundliId, "BirthChart");
+            Charts birthChart = this.generateChart(kundliId, "BirthChart");
             return ResponseEntity.ok(birthChart);
         } catch (IllegalArgumentException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);

@@ -33,9 +33,7 @@ services:
       - astro-network
 
   astro-kundli:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: astro-kundli:latest
     container_name: astro-kundli-app
     ports:
       - '8080:8080'

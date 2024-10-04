@@ -13,9 +13,11 @@ import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
 
 import static co.renil.astro.kundli.astrology.util.AstronomicalConstants.*;
 
+@Service
 public class BirthChartGenerator {
 
     private static final Logger logger = LoggerFactory.getLogger(BirthChartGenerator.class);

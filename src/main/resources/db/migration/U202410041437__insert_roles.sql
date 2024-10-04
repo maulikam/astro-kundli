@@ -1,0 +1,2 @@
+-- Migration script: U202410041437__insert_roles.sql
+-- Write your SQL statements here

@@ -2,6 +2,7 @@ package co.renil.astro.kundli.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.util.Set;
 
@@ -13,6 +14,7 @@ public class Role {
     private Long id;
     private String name;
 
+    @EqualsAndHashCode.Exclude
     @ManyToMany(mappedBy = "roles")
     private Set<User> users;
 
@@ -22,4 +24,3 @@ public class Role {
             inverseJoinColumns = @JoinColumn(name = "authority_id", referencedColumnName = "id"))
     private Set<Authority> authorities;
 }
-
