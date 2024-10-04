@@ -1,6 +1,8 @@
+"use client";
+
 import React, { createContext, useState, useContext, useEffect } from 'react';
 import { authService } from '../services/authService';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation'; // Use next/navigation for App Router compatibility
 import { isAuthenticated as checkAuthToken, redirectIfNotAuthenticated } from '../lib/authGuard';
 import { info, error as logError } from '../lib/logService'; // Added logging service
 
@@ -74,6 +76,4 @@ export const AuthProvider = ({ children }) => {
   );
 };
 
-export const useAuth = () => useContext(AuthContext);
-
-export default AuthContext;
+export default AuthContext; // Export only the context

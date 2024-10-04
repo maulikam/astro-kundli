@@ -1,19 +1,14 @@
 // src/app/layout.js
+import { AuthProvider } from '../context/AuthContext';
 
-import React from 'react';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
-
-const RootLayout = ({ children }) => {
+export default function RootLayout({ children }) {
   return (
-    <>
-      <Header />
-      <main className="main-content">
-        {children}
-      </main>
-      <Footer />
-    </>
+    <html lang="en">  
+      <body> 
+        <AuthProvider>
+          {children}
+        </AuthProvider>
+      </body>
+     </html>
   );
-};
-
-export default RootLayout;
+}

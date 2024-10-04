@@ -2,7 +2,7 @@
 
 import axios from './axiosInstance';
 import { AUTH_API } from './constants/apiEndpoints';
-import { useAuth } from '../hooks/useAuth';
+import useAuth from '../hooks/useAuth'; // Ensure this line is correct
 import React from 'react';
 
 /**

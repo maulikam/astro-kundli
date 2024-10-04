@@ -1,8 +1,7 @@
 // src/components/Header.js
-
 import React from 'react';
 import Link from 'next/link';
-import { useAuth } from '../hooks/useAuth';
+import useAuth from '../hooks/useAuth'; // Updated to make sure it's imported from the hooks
 
 const Header = () => {
   const { user, isAuthenticated, logout } = useAuth();
