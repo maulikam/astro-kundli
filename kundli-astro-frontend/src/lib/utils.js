@@ -98,4 +98,3 @@ export const formatDate = (date, options = { year: 'numeric', month: 'long', day
     radiansToDegrees,
     generateUniqueId,
   };
-  

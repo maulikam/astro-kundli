@@ -7,8 +7,12 @@ let analyticsProvider = null;
  * @param {Object} provider - The analytics provider object (e.g., Google Analytics)
  */
 export function initializeAnalytics(provider) {
+  if (!provider) {
+    console.warn("No analytics provider supplied. Analytics initialization aborted.");
+    return;
+  }
   analyticsProvider = provider;
-  console.log('Analytics initialized');
+  console.log('Analytics initialized successfully');
 }
 
 /**
@@ -17,11 +21,16 @@ export function initializeAnalytics(provider) {
  */
 export function trackPageView(pageName) {
   if (!analyticsProvider) {
-    console.warn('Analytics not initialized');
+    console.warn('Analytics provider not initialized. Page view tracking aborted.');
     return;
   }
 
-  console.log(`Page view tracked: ${pageName}`);
+  if (!pageName) {
+    console.warn("Page name not provided for tracking page view.");
+    return;
+  }
+
+  console.log(`Tracking page view: ${pageName}`);
   // Implement the actual tracking logic here, e.g.:
   // analyticsProvider.trackPageView(pageName);
 }
@@ -35,11 +44,16 @@ export function trackPageView(pageName) {
  */
 export function trackEvent(category, action, label = null, value = null) {
   if (!analyticsProvider) {
-    console.warn('Analytics not initialized');
+    console.warn('Analytics provider not initialized. Event tracking aborted.');
     return;
   }
 
-  console.log(`Event tracked: ${category} - ${action}${label ? ` - ${label}` : ''}${value !== null ? ` - ${value}` : ''}`);
+  if (!category || !action) {
+    console.warn('Event category and action are required for tracking.');
+    return;
+  }
+
+  console.log(`Tracking event: ${category} - ${action}${label ? ` - ${label}` : ''}${value !== null ? ` - ${value}` : ''}`);
   // Implement the actual tracking logic here, e.g.:
   // analyticsProvider.trackEvent(category, action, label, value);
 }

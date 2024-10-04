@@ -3,6 +3,7 @@
 import axios from './axiosInstance';
 import { AUTH_API } from './constants/apiEndpoints';
 import { useAuth } from '../hooks/useAuth';
+import React from 'react';
 
 /**
  * Check if the user is authenticated
@@ -59,7 +60,6 @@ export const authGuard = (Component) => {
       return null; // Render nothing while redirecting
     }
 
-    // Render the protected component
     return <Component {...props} />;
   };
 };
