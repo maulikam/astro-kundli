@@ -37,7 +37,24 @@ export const authenticate = async (credentials) => {
   }
 };
 
-export default {
+/**
+ * Fetch the current authenticated user
+ * @returns {Promise<Object>} - The user data
+ */
+export const fetchCurrentUser = async () => {
+  try {
+    logInfo('Fetching current user data');
+    const response = await axios.get(AUTH_API.GET_CURRENT_USER);
+    logInfo('Current user data fetched successfully');
+    return response.data;
+  } catch (error) {
+    logError('Failed to fetch current user:', error);
+    throw new Error(ERROR_MESSAGES.UNAUTHORIZED);
+  }
+};
+
+export const authService = {
   register,
   authenticate,
+  fetchCurrentUser, // Add the function here
 };
